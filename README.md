@@ -1,49 +1,51 @@
-# Customer Churn Prediction
+# Churn Prediction
 
-A Machine Learning web application that predicts whether a customer is likely to churn (leave the bank) based on customer information.
-
-## Features
-
-- Customer churn prediction
-- Flask web application
-- Machine Learning model deployment
-- Simple user interface
-
-## Technologies Used
-
-- Python
-- Flask
-- Scikit-learn
-- XGBoost
-- Pandas
-- HTML
+A machine learning project that predicts whether a bank customer is likely to churn, deployed as a Flask web app.
 
 ## Project Structure
+
+```
 Churn_prediction/
-│
-├── app.py
-├── churn_model.pkl
-├── model_columns.pkl
-├── requirements.txt
-│
 ├── templates/
-│ └── index.html
-│
-├── Churn_Modelling.csv
-└── Churn_Modelling.ipynb
+│   └── index.html          Web form for entering customer details
+├── app.py                  Flask application (routes + prediction logic)
+├── churn_model.pkl          Trained XGBoost model
+├── model_columns.pkl        Feature column order used by the model
+├── Churn_Modelling.csv       Source dataset
+├── Churn_Modelling.ipynb     Notebook: EDA, preprocessing, model training and tuning
+├── Deployment link.txt        Link to the live deployed app
+└── requirements.txt          Python dependencies
+```
 
-## Installation
+## Overview
 
-1. Clone the repository
+The dataset contains 10,000 bank customers with attributes like credit score, geography, age, balance, and product usage, along with whether they exited (churned).
 
-```bash
-git clone <repository-url>
-cd Churn_prediction
+`Churn_Modelling.ipynb` covers:
+- Data cleaning and feature engineering (balance-to-salary ratio, credit-score-to-age ratio)
+- Baseline models: Logistic Regression, Random Forest, XGBoost
+- Hyperparameter tuning with GridSearchCV and stratified cross-validation
+- Final model comparison and evaluation
 
+The best model (tuned XGBoost) reaches **86.95%** test accuracy and is saved as `churn_model.pkl`.
 
-2.Install dependencies
+## Running Locally
+
+Install dependencies:
+
+```
 pip install -r requirements.txt
+```
 
+Start the app:
 
-3.Run the application
+```
 python app.py
+```
+
+
+## Tech Stack
+
+- Python, pandas, scikit-learn, XGBoost
+- Flask
+- HTML/CSS (Jinja templates)
